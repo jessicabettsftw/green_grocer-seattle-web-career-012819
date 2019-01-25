@@ -22,16 +22,17 @@ def apply_coupons(cart, coupons)
     item_array = item.flatten
     label = item_array[1] + " W/COUPON"
     if (cart.key?(item_array[1]) == true)
-      if (cart.key?(label) == false)
-          cart[label] = {}
-          cart[label][:price] = item_array[5]
-          cart[label][:clearance] = cart[item_array[1]][:clearance]
+      if(cart[item_array][:count] > item_array[3])
+        if (cart.key?(label) == false)
+            cart[label] = {}
+            cart[label][:price] = item_array[5]
+            cart[label][:clearance] = cart[item_array[1]][:clearance]
+            cart[item_array[1]][:count] -= item_array[3]
+            cart[label][:count] = 1
+        else
+          cart[label][:count] += 1
           cart[item_array[1]][:count] -= item_array[3]
-          cart[label][:count] = 1
-      else
-        cart[label][:count] += 1
-        cart[item_array[1]][:count] -= item_array[3]
-      end
+        end
     end
   end
   
