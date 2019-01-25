@@ -30,8 +30,10 @@ def apply_coupons(cart, coupons)
             cart[item_array[1]][:count] -= item_array[3]
             cart[label][:count] = 1
         else
-          cart[label][:count] += 1
-          cart[item_array[1]][:count] -= item_array[3]
+          if(cart[item_array[1]][:count] >= item_array[3])
+            cart[label][:count] += 1
+            cart[item_array[1]][:count] -= item_array[3]
+          end
         end
       end
     end
