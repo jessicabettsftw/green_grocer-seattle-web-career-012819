@@ -22,7 +22,7 @@ def apply_coupons(cart, coupons)
     item_array = item.flatten
     label = item_array[1] + " W/COUPON"
     if (cart.key?(item_array[1]) == true)
-      if(cart[item_array][:count] > item_array[3])
+      if(cart[item_array[1]][:count] >= item_array[3])
         if (cart.key?(label) == false)
             cart[label] = {}
             cart[label][:price] = item_array[5]
